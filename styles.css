@@ -2,8 +2,10 @@
     --canvas-color:  #8aa19b;
     --canvas-color-light: #c1d4cc;
     --black: #28424c;
-    --gray-on-white: #f1f4fb;
+    --gray-on-white: #a0a7af;
     --gray-on-black: #687384;
+    --white-divider: #e8eef3;
+    --black-divider: #e8eef3;
     --white: #ffffff;
     --action: #d3763e;
     --primary: #337c8b;
@@ -24,12 +26,33 @@ body {
 }
 
 button {
+    border: none;
+    background-color: var(--white);
     aspect-ratio: 1/1;
     width: 3em;
     height: 3em;
     font-size: 1em;
     border-radius: 0.8em;
-    flex: 1;
+    flex: 0;
+    box-shadow: 4px 4px 4px var(--white-divider), -4px 0px 4px var(--white-divider);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button.number {
+    color: var(--black);
+}
+
+button.operation {
+    background-color: var(--primary);
+    color: var(--white);
+} 
+
+button.equal {
+    background-color: var(--action);
+    color: var(--white);
 }
 
 .calc {
@@ -45,13 +68,25 @@ button {
 }
 
 .display {
+    width: 100%;
     flex: 0 1 25%;
     font-size: 2em;
     font-weight: bold;
+    color: var(--black);
+    border-bottom: solid 1px var(--white-divider);
+    display: flex;
+    align-items: end;
+    justify-content: right;
 }
 
 .equation {
+    color: var(--gray-on-white);
+    width: 100%;
     flex: 0 1 10%;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
 .buttons {
@@ -63,11 +98,12 @@ button {
 }
 
 .buttons > div {
+    width: 100%;
     display: flex;
     gap: 0.3em;
 }
 
 .zero {
-    
+    flex: 1;
 }
 
