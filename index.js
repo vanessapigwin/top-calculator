@@ -40,8 +40,12 @@ function evaluateFunction() {
     let result;
     let equation;
 
-    if (numberR === undefined)
+    if (numberR === '') {
         numberR = parseFloat(tempStr);
+    }
+
+    if (!operator)
+        tempStr = '';
 
     if (numberL === 'ERROR') {
         result = 'ERROR';
@@ -53,14 +57,14 @@ function evaluateFunction() {
     }
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
-    numberR = undefined;
+    numberR = '';
 
     return result;
 }
 
 function clearScreen() {
-    numberL = undefined;
-    numberR = undefined;
+    numberL = '';
+    numberR = '';
     tempStr = '';
     operator = undefined;
     result = undefined;
@@ -83,13 +87,12 @@ function getNumber(e) {
 // }
 
 function setOperator(e) {
-    if (numberL !== undefined && operator !== undefined && tempStr != '') {
+    if (numberL !== '' && operator !== undefined && tempStr != '') {
         numberR = tempStr;
         result = evaluateFunction();
-        numberR = undefined;
     }
 
-    if (numberL === undefined) {
+    if (numberL === '') {
         numberL = tempStr;
     }
     else {
@@ -98,12 +101,10 @@ function setOperator(e) {
 
     if (result !== undefined) {
         numberL = result;
-        numberR = undefined;
+        numberR = '';
     }
     
     operator = e.target.id;
-    equationDisplay.textContent = `${numberL} ${operator} ${numberR}`;
-    
     tempStr = '';
     console.log(`L: ${numberL}, ope: ${operator}, R: ${numberR}, temp: ${tempStr}`)
 }
