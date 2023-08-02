@@ -28,7 +28,7 @@ const operations = {
     divide: {
         symbol: '/',
         calculate: function (x, y) {
-            if (y === '0') {
+            if (y == 0) {
                 alert('Division by zero.');
                 return "ERROR";
             } else
@@ -70,23 +70,21 @@ function clearScreen() {
     tempStr = '';
     operator = undefined;
     result = undefined;
-    resultDisplay.textContent = 0;
+    resultDisplay.textContent = '';
     equationDisplay.textContent = '';
 }
 
 function getNumber(e) {
     let char = e.target.textContent;
-    if (char === '.' && tempStr.length === 0)
+    if (char === '.' && (tempStr.length === 0))
         tempStr += '0.';
     else if (char !== '.' || !(tempStr.includes('.')))
         tempStr += char;
     resultDisplay.textContent = parseFloat(tempStr);
 }
 
-// function getSign(number) {
-//     number *= -1
-//     return number;
-// }
+function updateSign() {
+}
 
 function setOperator(e) {
     if (numberL !== '' && operator !== undefined && tempStr != '') {
@@ -118,6 +116,7 @@ function initCalculator() {
     numberButtons.forEach(button => button.addEventListener('click', getNumber));
     operationButtons.forEach(button => button.addEventListener('click', setOperator));
     equalButton.addEventListener('click', evaluateFunction);
+    signButton.addEventListener('click', updateSign);
 }
 
 initCalculator();
