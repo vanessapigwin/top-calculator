@@ -29,6 +29,7 @@ const operations = {
         symbol: '/',
         calculate: function (x, y) {
             if (y === '0') {
+                alert('Division by zero.');
                 return "ERROR";
             } else
                 return x / y;
@@ -55,6 +56,7 @@ function evaluateFunction() {
         equation = `${numberL} ${symbol} ${numberR}`;
         result = operations[operator].calculate(numberL, numberR);
     }
+
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
     numberR = '';
