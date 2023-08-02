@@ -2,6 +2,7 @@ let numberL;
 let numberR;
 let operator;
 let result;
+let tempStr;
 
 const resultDisplay = document.querySelector('.display');
 const equationDisplay = document.querySelector('.equation'); 
@@ -9,6 +10,7 @@ const clearButton = document.querySelector('#clear');
 const numberButtons = document.querySelectorAll('.number');
 const operationButtons = document.querySelectorAll('.mdas');
 const equalButton = document.querySelector('.equal');
+const signButton = document.querySelector('#sign');
 
 const operations = {
     add: {
@@ -38,6 +40,9 @@ function evaluateFunction() {
     let result;
     let equation;
 
+    if (numberR === undefined)
+        numberR = parseFloat(tempStr);
+
     if (numberL === 'ERROR') {
         result = 'ERROR';
         equation = '';
@@ -48,14 +53,15 @@ function evaluateFunction() {
     }
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
+    numberR = undefined;
 
     return result;
 }
 
 function clearScreen() {
-    numberL = '';
-    numberR = '';
-    dummyStr = '';
+    numberL = undefined;
+    numberR = undefined;
+    tempStr = '';
     operator = undefined;
     result = undefined;
     resultDisplay.textContent = 0;
@@ -63,38 +69,43 @@ function clearScreen() {
 }
 
 function getNumber(e) {
-    let char = e.target.textContent; 
-    if (result === undefined && operator === undefined) {
-        if (char === '.' && numberL.length === 0)
-            numberL += '0.';
-        else if (!numberL.includes('.') || char !== '.')
-            numberL += char
-        resultDisplay.textContent = numberL;
-    }
-    else {
-        if (char === '.' && numberL.length === 0)
-            numberR += '0.';
-        else if (!numberR.includes('.') || char !== '.')
-            numberR += char
-        resultDisplay.textContent = numberR;
-    }
-
-    console.log(`L: ${numberL} ope: ${operator}, R: ${numberR}`)
+    let char = e.target.textContent;
+    if (char === '.' && tempStr.length === 0)
+        tempStr += '0.';
+    else if (char !== '.' || !(tempStr.includes('.')))
+        tempStr += char;
+    resultDisplay.textContent = parseFloat(tempStr);
 }
 
+// function getSign(number) {
+//     number *= -1
+//     return number;
+// }
+
 function setOperator(e) {
-    if (numberL !== '' && numberR !== '' && operator !== undefined) {
+    if (numberL !== undefined && operator !== undefined && tempStr != '') {
+        numberR = tempStr;
         result = evaluateFunction();
-        numberR = '';
+        numberR = undefined;
     }
 
-    if (numberL !== '')
-        operator = e.target.id;
+    if (numberL === undefined) {
+        numberL = tempStr;
+    }
+    else {
+        numberR = tempStr;
+    }
 
-    if (result !== undefined)
+    if (result !== undefined) {
         numberL = result;
+        numberR = undefined;
+    }
     
-    console.log(`L: ${numberL} ope: ${operator}, R: ${numberR}`)
+    operator = e.target.id;
+    equationDisplay.textContent = `${numberL} ${operator} ${numberR}`;
+    
+    tempStr = '';
+    console.log(`L: ${numberL}, ope: ${operator}, R: ${numberR}, temp: ${tempStr}`)
 }
 
 function initCalculator() {
