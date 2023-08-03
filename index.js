@@ -41,9 +41,10 @@ function evaluateFunction() {
     let result;
     let equation;
 
-    if (numberR === '') {
+    if (tempStr !== '') {
         numberR = parseFloat(tempStr);
-    }
+    } else
+        clearScreen();
 
     if (!operator)
         tempStr = '';
