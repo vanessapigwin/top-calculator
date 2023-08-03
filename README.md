@@ -7,7 +7,7 @@
 
 ## Gotchas
 - [x] Evaluate only 2 numbers at a time
-- [ ] Round answers to prevent overflow
+- [x] Round answers to prevent overflow
 - [x] Handle pressing = before entering a second number
 - [x] Division by zero
 
@@ -15,4 +15,4 @@
 - [x] Get float point numbers as input
 - [ ] Add option to backspace to undo misclicks
 - [ ] Add keyboard support
-- [ ] implement negation
+- [x] implement negation

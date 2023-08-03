@@ -13,6 +13,7 @@ const numberButtons = document.querySelectorAll('.number');
 const operationButtons = document.querySelectorAll('.mdas');
 const equalButton = document.querySelector('.equal');
 const signButton = document.querySelector('#sign');
+const backspace = document.querySelector('#backspace');
 
 const operations = {
     add: {
@@ -63,12 +64,11 @@ function evaluateFunction() {
         let symbol = operations[operator].symbol;
         equation = `${numberL} ${symbol} ${numberR}`;
         result = operations[operator].calculate(numberL, numberR);
+        
+        if (result.toString().length > 11) {
+            result = result.toExponential(2);
+        }
     }
-    
-    if (result.toString().length > 11) {
-        result = result.toExponential(2);
-    }
-    console.log(result)
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
     numberR = '';
@@ -99,6 +99,13 @@ function getNumber(e) {
             tempStr = tempStr.slice(tempStr.length - SCREENLIMIT);
     }
     resultDisplay.textContent = tempStr;
+}
+
+function deleteEndNumber() {
+    tempStr = tempStr.slice(0, tempStr.length-1);
+    resultDisplay.textContent = tempStr;
+    console.log(tempStr)
+    return tempStr;
 }
 
 function updateSign() {
@@ -143,6 +150,9 @@ function setOperator(e) {
     
     operator = e.target.id;
     tempStr = '';
+    let symbol = operations[operator].symbol;
+    equation = `${numberL} ${symbol} ${numberR}`;
+    equationDisplay.textContent = equation;
 }
 
 function initCalculator() {
@@ -153,6 +163,7 @@ function initCalculator() {
     operationButtons.forEach(button => button.addEventListener('click', setOperator));
     equalButton.addEventListener('click', equalEvaluate);
     signButton.addEventListener('click', updateSign);
+    backspace.addEventListener('click', deleteEndNumber);
 }
 
 initCalculator();
