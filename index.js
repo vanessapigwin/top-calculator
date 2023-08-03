@@ -67,7 +67,6 @@ function evaluateFunction() {
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
     numberR = '';
-    equalPressed = false;
 
     return result;
 }
@@ -95,7 +94,7 @@ function getNumber(e) {
 function updateSign() {
     let valueDisplayed = tempStr;
 
-    if (!equalPressed)
+    if (!equalPressed) {
         if (valueDisplayed !== ''|| valueDisplayed !== '-') {
             if (valueDisplayed[0] !== '-')
                 valueDisplayed = '-'.concat(valueDisplayed);
@@ -110,6 +109,7 @@ function updateSign() {
             tempStr = valueDisplayed;
         }
         console.log(`L: ${numberL}, R: ${numberR}, temp: ${tempStr}`)  
+    }
 }
 
 function setOperator(e) {
