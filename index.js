@@ -3,6 +3,7 @@ let numberR;
 let operator;
 let result;
 let tempStr;
+let equalPressed;
 
 const resultDisplay = document.querySelector('.display');
 const equationDisplay = document.querySelector('.equation'); 
@@ -37,11 +38,16 @@ const operations = {
     } 
 };
 
+function equalEvaluate() {
+    equalPressed = true;
+    evaluateFunction();
+}
+
 function evaluateFunction() {
     let result;
     let equation;
 
-    if (tempStr !== '') {
+    if (tempStr !== '' && tempStr !== '-' && numberL !== '-') {
         numberR = parseFloat(tempStr);
     } else
         clearScreen();
@@ -61,8 +67,7 @@ function evaluateFunction() {
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
     numberR = '';
-    
-    // signButton.removeEventListener('click', updateSign)
+    equalPressed = false;
 
     return result;
 }
@@ -73,6 +78,7 @@ function clearScreen() {
     tempStr = '';
     operator = undefined;
     result = undefined;
+    equalPressed = false;
     resultDisplay.textContent = '';
     equationDisplay.textContent = '';
 }
@@ -88,24 +94,27 @@ function getNumber(e) {
 
 function updateSign() {
     let valueDisplayed = tempStr;
-    
-    if (valueDisplayed !== ''|| valueDisplayed !== '-') {
-        if (valueDisplayed[0] !== '-')
-            valueDisplayed = '-'.concat(valueDisplayed);
-        else
-            valueDisplayed = valueDisplayed.slice(1);
-        resultDisplay.textContent = valueDisplayed;
-        tempStr = valueDisplayed;
-    }
-    else {
-        tempStr += '-';
-        resultDisplay.textContent = valueDisplayed;
-        tempStr = valueDisplayed;
-    }
-    console.log(`L: ${numberL}, R: ${numberR}, temp: ${tempStr}`)  
+
+    if (!equalPressed)
+        if (valueDisplayed !== ''|| valueDisplayed !== '-') {
+            if (valueDisplayed[0] !== '-')
+                valueDisplayed = '-'.concat(valueDisplayed);
+            else
+                valueDisplayed = valueDisplayed.slice(1);
+            resultDisplay.textContent = valueDisplayed;
+            tempStr = valueDisplayed;
+        }
+        else {
+            tempStr += '-';
+            resultDisplay.textContent = valueDisplayed;
+            tempStr = valueDisplayed;
+        }
+        console.log(`L: ${numberL}, R: ${numberR}, temp: ${tempStr}`)  
 }
 
 function setOperator(e) {
+    equalPressed = false;
+
     if (numberL !== '' && operator !== undefined && tempStr != '') {
         numberR = tempStr;
         result = evaluateFunction();
@@ -133,7 +142,7 @@ function initCalculator() {
     clearButton.addEventListener('click', clearScreen);
     numberButtons.forEach(button => button.addEventListener('click', getNumber));
     operationButtons.forEach(button => button.addEventListener('click', setOperator));
-    equalButton.addEventListener('click', evaluateFunction);
+    equalButton.addEventListener('click', equalEvaluate);
     signButton.addEventListener('click', updateSign);
 }
 
