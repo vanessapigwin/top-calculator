@@ -5,6 +5,7 @@ let result;
 let tempStr;
 let equalPressed;
 
+const SCREENLIMIT = 10;
 const resultDisplay = document.querySelector('.display');
 const equationDisplay = document.querySelector('.equation'); 
 const clearButton = document.querySelector('#clear');
@@ -63,7 +64,11 @@ function evaluateFunction() {
         equation = `${numberL} ${symbol} ${numberR}`;
         result = operations[operator].calculate(numberL, numberR);
     }
-
+    
+    if (result.toString().length > 11) {
+        result = result.toExponential(2);
+    }
+    console.log(result)
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
     numberR = '';
@@ -86,9 +91,14 @@ function getNumber(e) {
     let char = e.target.textContent;
     if (char === '.' && (tempStr.length === 0 || tempStr === '-'))
         tempStr += '0.';
-    else if (char !== '.' || !(tempStr.includes('.')))
+    else if (char === '0' && (tempStr === '0' || tempStr === '-0'))
+        tempStr += '';
+    else if (char !== '.' || !(tempStr.includes('.'))) {
         tempStr += char;
-    resultDisplay.textContent = parseFloat(tempStr);
+        if (tempStr.length > SCREENLIMIT)
+            tempStr = tempStr.slice(tempStr.length - SCREENLIMIT);
+    }
+    resultDisplay.textContent = tempStr;
 }
 
 function updateSign() {
@@ -108,7 +118,6 @@ function updateSign() {
             resultDisplay.textContent = valueDisplayed;
             tempStr = valueDisplayed;
         }
-        console.log(`L: ${numberL}, R: ${numberR}, temp: ${tempStr}`)  
     }
 }
 
