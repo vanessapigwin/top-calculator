@@ -61,6 +61,8 @@ function evaluateFunction() {
     resultDisplay.textContent = result;
     equationDisplay.textContent = equation;
     numberR = '';
+    
+    // signButton.removeEventListener('click', updateSign)
 
     return result;
 }
@@ -77,7 +79,7 @@ function clearScreen() {
 
 function getNumber(e) {
     let char = e.target.textContent;
-    if (char === '.' && (tempStr.length === 0))
+    if (char === '.' && (tempStr.length === 0 || tempStr === '-'))
         tempStr += '0.';
     else if (char !== '.' || !(tempStr.includes('.')))
         tempStr += char;
@@ -85,6 +87,22 @@ function getNumber(e) {
 }
 
 function updateSign() {
+    let valueDisplayed = tempStr;
+    
+    if (valueDisplayed !== ''|| valueDisplayed !== '-') {
+        if (valueDisplayed[0] !== '-')
+            valueDisplayed = '-'.concat(valueDisplayed);
+        else
+            valueDisplayed = valueDisplayed.slice(1);
+        resultDisplay.textContent = valueDisplayed;
+        tempStr = valueDisplayed;
+    }
+    else {
+        tempStr += '-';
+        resultDisplay.textContent = valueDisplayed;
+        tempStr = valueDisplayed;
+    }
+    console.log(`L: ${numberL}, R: ${numberR}, temp: ${tempStr}`)  
 }
 
 function setOperator(e) {
@@ -107,7 +125,6 @@ function setOperator(e) {
     
     operator = e.target.id;
     tempStr = '';
-    console.log(`L: ${numberL}, ope: ${operator}, R: ${numberR}, temp: ${tempStr}`)
 }
 
 function initCalculator() {
