@@ -88,7 +88,8 @@ function clearScreen() {
 }
 
 function getNumber(e) {
-    let char = e.target.textContent;
+    if (!equalPressed) {
+        let char = e.target.textContent;
     if (char === '.' && (tempStr.length === 0 || tempStr === '-'))
         tempStr += '0.';
     else if (char === '0' && (tempStr === '0' || tempStr === '-0'))
@@ -99,6 +100,8 @@ function getNumber(e) {
             tempStr = tempStr.slice(tempStr.length - SCREENLIMIT);
     }
     resultDisplay.textContent = tempStr;
+    } else 
+        clearScreen();
 }
 
 function deleteEndNumber() {
