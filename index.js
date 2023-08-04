@@ -105,9 +105,13 @@ function getNumber(e) {
 }
 
 function deleteEndNumber() {
-    tempStr = tempStr.slice(0, tempStr.length-1);
-    resultDisplay.textContent = tempStr;
-    return tempStr;
+    if (!equalPressed) {
+        tempStr = tempStr.slice(0, tempStr.length-1);
+        resultDisplay.textContent = tempStr;
+        return tempStr;
+    } else {
+        clearScreen();
+    }
 }
 
 function updateSign() {
@@ -127,7 +131,8 @@ function updateSign() {
             resultDisplay.textContent = valueDisplayed;
             tempStr = valueDisplayed;
         }
-    }
+    } else
+        clearScreen();
 }
 
 function setOperator(e) {
