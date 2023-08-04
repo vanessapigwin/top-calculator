@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="keypress.js" defer></script>
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -19,26 +20,26 @@
                 <button class="operation mdas" id="divide">/</button>
             </div>
             <div>
-                <button class="number">7</button>
-                <button class="number">8</button>
-                <button class="number">9</button>
+                <button class="number" id="key-7">7</button>
+                <button class="number" id="key-8">8</button>
+                <button class="number" id="key-9">9</button>
                 <button class="operation mdas" id="multiply">&#215;</button>
             </div>
             <div>
-                <button class="number">4</button>
-                <button class="number">5</button>
-                <button class="number">6</button>
+                <button class="number" id="key-4">4</button>
+                <button class="number" id="key-5">5</button>
+                <button class="number" id="key-6">6</button>
                 <button class="operation mdas" id="subtract">&#8722;</button>
             </div>
             <div>
-                <button class="number">1</button>
-                <button class="number">2</button>
-                <button class="number">3</button>
+                <button class="number" id="key-1">1</button>
+                <button class="number" id="key-2">2</button>
+                <button class="number" id="key-3">3</button>
                 <button class="operation mdas" id="add">&#43;</button>
             </div>
             <div>
-                <button class="number zero">0</button>
-                <button class="number">.</button>
+                <button class="number zero" id="key-0">0</button>
+                <button class="number" id="dot">.</button>
                 <button class="equal">&#61;</button>
             </div>
         </div>

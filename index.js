@@ -163,7 +163,7 @@ function initCalculator() {
     equalButton.addEventListener('click', equalEvaluate);
     signButton.addEventListener('click', updateSign);
     backspace.addEventListener('click', deleteEndNumber);
+    document.addEventListener('keydown', simulatePress);
 }
 
 initCalculator();
-
