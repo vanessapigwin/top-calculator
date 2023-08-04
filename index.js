@@ -154,9 +154,16 @@ function setOperator(e) {
     equationDisplay.textContent = equation;
 }
 
+function switchTheme() {
+    const calculatorArea = document.querySelector('.calc');
+    const buttons = document.querySelectorAll('button');
+    resultDisplay.classList.toggle('display-alt');
+    calculatorArea.classList.toggle('calc-alt');
+    buttons.forEach( button => button.classList.toggle('button-alt'));
+}
+
 function initCalculator() {
     clearScreen();
-
     clearButton.addEventListener('click', clearScreen);
     numberButtons.forEach(button => button.addEventListener('click', getNumber));
     operationButtons.forEach(button => button.addEventListener('click', setOperator));
@@ -164,6 +171,7 @@ function initCalculator() {
     signButton.addEventListener('click', updateSign);
     backspace.addEventListener('click', deleteEndNumber);
     document.addEventListener('keydown', simulatePress);
+    clearButton.addEventListener('dblclick', switchTheme);
 }
 
 initCalculator();

@@ -14,7 +14,7 @@
 ## Optional Features
 - [x] Get float point numbers as input
 - [x] Add option to backspace to undo misclicks
-- [ ] Add keyboard support
+- [x] Add keyboard support
 - [x] implement negation
 
 Lessons learned from doing the project:

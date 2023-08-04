@@ -1,7 +1,7 @@
 :root {
     --canvas-color:  #8aa19b;
-    --canvas-color-light: #c1d4cc;
-    --black: #28424c;
+    --black: #262d37;
+    --shade-on-black: #202731;
     --gray-on-white: #a0a7af;
     --gray-on-black: #687384;
     --white-divider: #e8eef3;
@@ -10,10 +10,6 @@
     --action: #d3763e;
     --primary: #337c8b;
 }
-
-/* * {
-    border: solid 1px red;
-} */
 
 body {
     margin: 0;
@@ -107,3 +103,21 @@ button.equal {
     flex: 1;
 }
 
+/* alt theme */
+.calc-alt {
+    background-color: var(--black);
+}
+
+.button-alt {
+    box-shadow: 4px 4px 4px var(--shade-on-black), -4px 0px 4px var(--shade-on-black);
+}
+
+.button-alt.number {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.display-alt {
+    color: var(--white);
+    border-bottom: solid 1px var(--gray-on-black);
+}
