@@ -15,7 +15,8 @@
 - [x] Get float point numbers as input
 - [x] Add option to backspace to undo misclicks
 - [x] Add keyboard support
-- [x] implement negation
+- [x] Implement negation
+- [x] Easter egg (double click one of the buttons)
 
 Lessons learned from doing the project:
 - Commit regularly, make branches as necessary when testing new approaches
