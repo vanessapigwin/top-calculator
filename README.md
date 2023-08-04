@@ -13,6 +13,11 @@
 
 ## Optional Features
 - [x] Get float point numbers as input
-- [ ] Add option to backspace to undo misclicks
+- [x] Add option to backspace to undo misclicks
 - [ ] Add keyboard support
 - [x] implement negation
+
+Lessons learned from doing the project:
+- Commit regularly, make branches as necessary when testing new approaches
+- Make methods as small as possible 
+- Refactor whenever possible

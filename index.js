@@ -50,7 +50,7 @@ function evaluateFunction() {
     let equation;
 
     if (tempStr !== '' && tempStr !== '-' && numberL !== '-') {
-        numberR = parseFloat(tempStr);
+        numberR = tempStr;
     } else
         clearScreen();
 
@@ -104,7 +104,6 @@ function getNumber(e) {
 function deleteEndNumber() {
     tempStr = tempStr.slice(0, tempStr.length-1);
     resultDisplay.textContent = tempStr;
-    console.log(tempStr)
     return tempStr;
 }
 
